@@ -381,3 +381,8 @@ input[readonly] { opacity: .8; }
 .delta { direction: ltr; unicode-bidi: isolate; }
 [dir="rtl"] .delta { text-align: left; }
 .foot a { white-space: nowrap; }
+
+/* v4 : chaque opération sur deux lignes, note lisible, icônes en bas à droite */
+.op { flex-direction: column; align-items: stretch; gap: 2px; }
+.o-actions { justify-content: flex-end; }
+.o-main small { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }

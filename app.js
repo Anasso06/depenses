@@ -53,7 +53,8 @@ const I18N = {
     resetConfirm2: 'Dernière confirmation : cette action est définitive. Continuer ?', resetDone: 'Remise à zéro effectuée',
     nothingToReset: 'Rien à supprimer.', backupFail: 'Sauvegarde impossible : rien n’a été supprimé.', allOps: 'toutes les opérations',
     viewOp: 'Consulter', editOp: 'Modifier', delOp: 'Supprimer', detail: 'Détail de l’opération', noAtt: 'Aucune',
-    openAtt: 'Voir la pièce jointe', deleted: 'Opération supprimée', type: 'Type', rights: 'Tous droits réservés'
+    openAtt: 'Voir la pièce jointe', deleted: 'Opération supprimée', type: 'Type', rights: 'Tous droits réservés',
+    resetAtt: 'Inclure les pièces jointes dans la sauvegarde', attNotSaved: 'Les pièces jointes ne seront pas dans la sauvegarde.'
   },
   ar: {
     app: 'مصاريفي', expenses: 'المصاريف', income: 'المداخيل', net: 'رصيد الشهر',
@@ -101,7 +102,8 @@ const I18N = {
     resetConfirm2: 'تأكيد أخير : هذا الإجراء نهائي. هل تتابع؟', resetDone: 'تمت إعادة التصفير',
     nothingToReset: 'لا شيء للحذف.', backupFail: 'تعذر إنشاء النسخة الاحتياطية : لم يُحذف شيء.', allOps: 'كل العمليات',
     viewOp: 'عرض', editOp: 'تعديل', delOp: 'حذف', detail: 'تفاصيل العملية', noAtt: 'لا يوجد',
-    openAtt: 'عرض المرفق', deleted: 'تم حذف العملية', type: 'النوع', rights: 'جميع الحقوق محفوظة'
+    openAtt: 'عرض المرفق', deleted: 'تم حذف العملية', type: 'النوع', rights: 'جميع الحقوق محفوظة',
+    resetAtt: 'تضمين المرفقات في النسخة الاحتياطية', attNotSaved: 'لن تُدرج المرفقات في النسخة الاحتياطية.'
   }
 };
 
@@ -612,8 +614,8 @@ function renderAll() {
     '<section class="card"><h2>' + t('accounts') + '<small>' + t('total') + ' ' + money(totalBal) + '</small></h2>' + accRows + '</section>' +
     budgetsHTML(ops) +
     '<section class="card"><h2>' + t('byCategory') + (chart.total ? '<small>' + t('total') + ' ' + money(chart.total) + '</small>' : '') + '</h2>' + chart.html + '</section>' +
-    compareHTML() +
-    '<section class="card ops"><h2 style="padding-top:10px">' + t('operations') + '</h2>' + filtersHTML() + '<div id="opsBody"></div></section>';
+    '<section class="card ops"><h2 style="padding-top:10px">' + t('operations') + '</h2>' + filtersHTML() + '<div id="opsBody"></div></section>' +
+    compareHTML();
   renderOps();
 }
 
@@ -964,6 +966,7 @@ function renderSettings() {
         '<button class="btn">' + t('addBtn') + '</button></form>' +
       '<h3>' + t('reset') + '</h3><p class="hint">' + t('resetHint') + '</p>' +
       '<label class="chk"><input type="checkbox" id="resetBal"> ' + t('resetBal') + '</label>' +
+      '<label class="chk"><input type="checkbox" id="resetAtt" checked> ' + t('resetAtt') + '</label>' +
       '<button type="button" class="danger" data-act="reset-month">' + t('resetMonth') + ' (' + esc(monthLabel(month)) + ')</button>' +
       '<button type="button" class="danger" data-act="reset-all">' + t('resetAll') + '</button>' +
     '</div>';
@@ -981,7 +984,7 @@ function bindSettings() {
     if (act === 'export-json') exportData();
     else if (act === 'export-xlsx') exportXlsx();
     else if (act === 'import') $('#importFile').click();
-    else if (act === 'reset-month' || act === 'reset-all') resetOps(act === 'reset-month' ? 'month' : 'all', $('#resetBal').checked);
+    else if (act === 'reset-month' || act === 'reset-all') resetOps(act === 'reset-month' ? 'month' : 'all', $('#resetBal').checked, $('#resetAtt').checked);
     else if (act === 'del-acc') {
       const id = b.dataset.id;
       if (state.accounts.length <= 1) return toast(t('lastOne'));
@@ -1051,9 +1054,9 @@ function download(blob, name) {
   setTimeout(() => URL.revokeObjectURL(url), 30000);
 }
 
-async function exportData() {
+async function exportData(withFiles = true) {
   try {
-    const files = DB.db ? await DB.all() : [];
+    const files = withFiles && DB.db ? await DB.all() : [];
     const out = { app: 'depenses', version: 1, exportedAt: new Date().toISOString(), state: state, files: [] };
     for (const f of files) {
       out.files.push({ id: f.id, name: f.name, type: f.type, data: await blobToDataURL(f.blob) });
@@ -1295,18 +1298,18 @@ async function openView(id) {
   }
 }
 
-async function resetOps(scope, zeroBal) {
+async function resetOps(scope, zeroBal, withAtt) {
   const list = scope === 'month' ? state.tx.filter((x) => x.date.startsWith(month)) : state.tx.slice();
   const hasBal = zeroBal && state.accounts.some((a) => Number(a.initial));
   if (!list.length && !hasBal) return toast(t('nothingToReset'));
 
   const label = scope === 'month' ? monthLabel(month) : t('allOps');
   const msg = t('resetConfirm').replace('{n}', list.length).replace('{label}', label) + '\n' +
-    t('attDeleted') + (zeroBal ? '\n' + t('balZero') : '') + '\n' + t('backupNote');
+    t('attDeleted') + (zeroBal ? '\n' + t('balZero') : '') + '\n' + t('backupNote') + (withAtt ? '' : '\n' + t('attNotSaved'));
   if (!confirm(msg)) return;
   if (!confirm(t('resetConfirm2'))) return;
 
-  const saved = await exportData();
+  const saved = await exportData(withAtt);
   if (!saved) return toast(t('backupFail'));
 
   for (const x of list) {
