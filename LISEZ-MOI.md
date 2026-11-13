@@ -18,7 +18,16 @@ Sans Python : dans VS Code, l'extension « Live Server » fait la même chose.
 2. Sur l'ordinateur, dans Chrome : `chrome://inspect/#devices` > Port forwarding : `8000` vers `localhost:8000`.
 3. Sur le téléphone, ouvre `http://localhost:8000` dans Chrome, puis menu ⋮ > « Installer l'application ».
 
-## Nouveautés de cette version
+## Version 3 : ce qui change
+
+- **Opérations** : trois icônes à droite de chaque ligne (à gauche en arabe) : œil pour consulter, crayon pour modifier, corbeille pour supprimer (avec confirmation). Toucher la ligne ouvre la consultation, avec aperçu de la pièce jointe.
+- **Budgets** : Réglages > Catégories > Budget mensuel. Barre de progression sur l'écran principal (orange à 80 %, rouge à 100 %) et message quand tu approches ou dépasses.
+- **Recherche et filtres** au-dessus de la liste : mot, compte, catégorie, type, et « Toutes les périodes ».
+- **Comparaison** avec le mois précédent par catégorie, et dépenses des 6 derniers mois.
+- **Remise à zéro** (Réglages, tout en bas) : « Effacer ce mois » ou « Effacer toutes les opérations », avec option pour remettre aussi les soldes de départ à 0. Deux confirmations, et une sauvegarde est téléchargée avant la suppression.
+- Mention des droits réservés avec ton surnom et ton adresse e-mail en bas de page.
+
+## Nouveautés de la version 2
 
 - **Heure** : préremplie avec l'heure actuelle, modifiable, affichée dans la liste.
 - **Sous-catégories** : Réglages > Catégories et sous-catégories (ex. Internet > Orange, Inwi). Elles se choisissent à chaque dépense et apparaissent dans le graphique.
@@ -48,4 +57,4 @@ Sur un nouveau téléphone : Réglages > Importer une sauvegarde.
 - `vendor/` : bibliothèques embarquées (Excel et lecture de PDF)
 - `manifest.json` et `icon-*.png` : l'installation et l'icône
 
-Si tu modifies un fichier, change le numéro de version dans `sw.js` (`depenses-v2` devient `depenses-v3`) pour que le téléphone recharge la nouvelle version.
+Si tu modifies un fichier, change le numéro de version dans `sw.js` (`depenses-v3` devient `depenses-v4`) pour que le téléphone recharge la nouvelle version.

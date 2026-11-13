@@ -40,7 +40,20 @@ const I18N = {
     groceries: 'Courses', transport: 'Transport', savings: 'Épargne', internet: 'Internet',
     maintenance: 'Entretien', others: 'Autres',
     xDate: 'Date', xTime: 'Heure', xType: 'Type', xAccount: 'Compte', xTo: 'Vers le compte', xCat: 'Catégorie',
-    xSub: 'Sous-catégorie', xNote: 'Note', xItems: 'Articles', xAmount: 'Montant (MAD)', xAtt: 'Pièce jointe'
+    xSub: 'Sous-catégorie', xNote: 'Note', xItems: 'Articles', xAmount: 'Montant (MAD)', xAtt: 'Pièce jointe',
+    budgets: 'Budgets du mois', budgetOf: 'Budget mensuel (MAD)', overBy: 'dépassé de',
+    budgetNear: 'Budget {c} : {p} % utilisé', budgetOver: 'Budget {c} dépassé',
+    search: 'Rechercher (note, article, montant…)', fAcc: 'Comptes', fCat: 'Catégories', fType: 'Types',
+    allPeriods: 'Toutes les périodes', clearFilters: 'Effacer les filtres', resCount: 'opération(s)', noMatch: 'Aucune opération ne correspond.',
+    compare: 'Comparaison avec le mois précédent', last6: 'Dépenses des 6 derniers mois', newItem: 'nouveau', totalRow: 'Total',
+    reset: 'Remise à zéro', resetHint: 'Efface les opérations et leurs pièces jointes. Une sauvegarde est téléchargée avant. Les comptes et les catégories sont gardés.',
+    resetMonth: 'Effacer ce mois', resetAll: 'Effacer toutes les opérations', resetBal: 'Remettre aussi les soldes de départ à 0',
+    resetConfirm: 'Supprimer {n} opération(s) : {label} ?', attDeleted: 'Les pièces jointes liées seront supprimées.',
+    balZero: 'Les soldes de départ seront remis à 0.', backupNote: 'Une sauvegarde sera téléchargée avant la suppression.',
+    resetConfirm2: 'Dernière confirmation : cette action est définitive. Continuer ?', resetDone: 'Remise à zéro effectuée',
+    nothingToReset: 'Rien à supprimer.', backupFail: 'Sauvegarde impossible : rien n’a été supprimé.', allOps: 'toutes les opérations',
+    viewOp: 'Consulter', editOp: 'Modifier', delOp: 'Supprimer', detail: 'Détail de l’opération', noAtt: 'Aucune',
+    openAtt: 'Voir la pièce jointe', deleted: 'Opération supprimée', type: 'Type', rights: 'Tous droits réservés'
   },
   ar: {
     app: 'مصاريفي', expenses: 'المصاريف', income: 'المداخيل', net: 'رصيد الشهر',
@@ -75,7 +88,20 @@ const I18N = {
     groceries: 'مشتريات', transport: 'النقل', savings: 'الادخار', internet: 'الإنترنت',
     maintenance: 'الصيانة', others: 'أخرى',
     xDate: 'التاريخ', xTime: 'الساعة', xType: 'النوع', xAccount: 'الحساب', xTo: 'إلى الحساب', xCat: 'الفئة',
-    xSub: 'الفئة الفرعية', xNote: 'ملاحظة', xItems: 'المشتريات', xAmount: 'المبلغ (درهم)', xAtt: 'مرفق'
+    xSub: 'الفئة الفرعية', xNote: 'ملاحظة', xItems: 'المشتريات', xAmount: 'المبلغ (درهم)', xAtt: 'مرفق',
+    budgets: 'ميزانيات الشهر', budgetOf: 'الميزانية الشهرية (درهم)', overBy: 'تجاوز بمقدار',
+    budgetNear: 'ميزانية {c} : استُعمل {p} %', budgetOver: 'تم تجاوز ميزانية {c}',
+    search: 'بحث (ملاحظة، مادة، مبلغ…)', fAcc: 'الحسابات', fCat: 'الفئات', fType: 'الأنواع',
+    allPeriods: 'كل الفترات', clearFilters: 'مسح التصفية', resCount: 'عملية', noMatch: 'لا توجد عملية مطابقة.',
+    compare: 'مقارنة مع الشهر السابق', last6: 'مصاريف آخر 6 أشهر', newItem: 'جديد', totalRow: 'المجموع',
+    reset: 'إعادة التصفير', resetHint: 'يحذف العمليات ومرفقاتها. تُحمَّل نسخة احتياطية قبل ذلك. تبقى الحسابات والفئات.',
+    resetMonth: 'حذف هذا الشهر', resetAll: 'حذف كل العمليات', resetBal: 'إرجاع الأرصدة الابتدائية إلى 0 أيضاً',
+    resetConfirm: 'حذف {n} عملية : {label} ؟', attDeleted: 'ستُحذف المرفقات المرتبطة بها.',
+    balZero: 'ستُرجع الأرصدة الابتدائية إلى 0.', backupNote: 'ستُحمَّل نسخة احتياطية قبل الحذف.',
+    resetConfirm2: 'تأكيد أخير : هذا الإجراء نهائي. هل تتابع؟', resetDone: 'تمت إعادة التصفير',
+    nothingToReset: 'لا شيء للحذف.', backupFail: 'تعذر إنشاء النسخة الاحتياطية : لم يُحذف شيء.', allOps: 'كل العمليات',
+    viewOp: 'عرض', editOp: 'تعديل', delOp: 'حذف', detail: 'تفاصيل العملية', noAtt: 'لا يوجد',
+    openAtt: 'عرض المرفق', deleted: 'تم حذف العملية', type: 'النوع', rights: 'جميع الحقوق محفوظة'
   }
 };
 
@@ -322,9 +348,11 @@ function monthLabel(m) {
   const p = m.split('-').map(Number);
   return new Intl.DateTimeFormat(locale(), { month: 'long', year: 'numeric' }).format(new Date(p[0], p[1] - 1, 1));
 }
-function dayLabel(s) {
+function dayLabel(s, withYear) {
   const p = s.split('-').map(Number);
-  return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short' }).format(new Date(p[0], p[1] - 1, p[2]));
+  const o = { day: 'numeric', month: 'short' };
+  if (withYear) o.year = 'numeric';
+  return new Intl.DateTimeFormat(locale(), o).format(new Date(p[0], p[1] - 1, p[2]));
 }
 
 /* ---------- Calculs ---------- */
@@ -384,34 +412,185 @@ function chartHTML(ops) {
   };
 }
 
-function opHTML(x) {
-  let title, sign = '', cls = '';
+const svgIcon = (d) => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+const ICONS = {
+  view: svgIcon('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
+  edit: svgIcon('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'),
+  del: svgIcon('<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/>')
+};
+
+const arrow = () => (state.lang === 'ar' ? '←' : '→');
+
+function opInfo(x) {
   if (x.type === 'out') {
     const c = catById(x.category);
-    title = c ? catName(c) : t('others');
+    let title = c ? catName(c) : t('others');
     const sn = c && x.sub ? subName(c, x.sub) : '';
     if (sn) title += ' · ' + sn;
-    sign = '−'; cls = 'neg';
-  } else if (x.type === 'in') {
-    title = t('tIn'); sign = '+'; cls = 'pos';
-  } else {
-    title = accName(accById(x.account)) + ' → ' + accName(accById(x.to));
+    return { title, sign: '−', cls: 'neg' };
   }
-  const when = dayLabel(x.date) + (x.time ? ' ' + x.time : '');
+  if (x.type === 'in') return { title: t('tIn'), sign: '+', cls: 'pos' };
+  return { title: accName(accById(x.account)) + ' ' + arrow() + ' ' + accName(accById(x.to)), sign: '', cls: '' };
+}
+
+function opHTML(x, withYear) {
+  const o = opInfo(x);
+  const when = dayLabel(x.date, withYear) + (x.time ? ' ' + x.time : '');
   const meta = [when, x.type === 'tr' ? '' : accName(accById(x.account)), x.note || itemsSummary(x)]
     .filter(Boolean).map(esc).join(' · ');
-  return '<button type="button" class="op" data-id="' + esc(x.id) + '"><span class="o-main"><b>' + esc(title) +
-    '</b><small>' + meta + '</small></span>' + (x.att ? '<span class="clip" aria-hidden="true">📎</span>' : '') +
-    '<span class="o-amt ' + cls + '">' + sign + money(x.amount) + '</span></button>';
+  const ico = (act, label, extra) =>
+    '<button type="button" class="ico' + (extra || '') + '" data-act="' + act + '" aria-label="' + esc(label) + '" title="' + esc(label) + '">' + ICONS[act] + '</button>';
+  return '<div class="op" data-id="' + esc(x.id) + '">' +
+    '<button type="button" class="o-body" data-act="view" aria-label="' + esc(t('viewOp')) + '">' +
+      '<span class="o-main"><b>' + esc(o.title) + '</b><small>' + meta + '</small></span>' +
+      (x.att ? '<span class="clip" aria-hidden="true">📎</span>' : '') +
+      '<span class="o-amt ' + o.cls + '">' + o.sign + money(x.amount) + '</span></button>' +
+    '<div class="o-actions">' + ico('view', t('viewOp')) + ico('edit', t('editOp')) + ico('del', t('delOp'), ' d') + '</div></div>';
+}
+
+/* ---------- Recherche et filtres ---------- */
+
+let flt = { q: '', acc: '', cat: '', type: '', all: false };
+const fold = (s) => String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+function filterActive() { return !!(flt.q.trim() || flt.acc || flt.cat || flt.type || flt.all); }
+
+function matches(x) {
+  if (!flt.all && !x.date.startsWith(month)) return false;
+  if (flt.type && x.type !== flt.type) return false;
+  if (flt.acc && x.account !== flt.acc && x.to !== flt.acc) return false;
+  if (flt.cat && x.category !== flt.cat) return false;
+  const q = fold(flt.q).trim();
+  if (q) {
+    const c = catById(x.category);
+    const hay = fold([
+      x.note, itemsSummary(x), c ? catName(c) : '', c && x.sub ? subName(c, x.sub) : '',
+      accName(accById(x.account)), x.to ? accName(accById(x.to)) : '', x.att ? x.att.name : '',
+      String(x.amount), String(x.amount).replace('.', ',')
+    ].join(' '));
+    if (!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function sortedOps(list) {
+  return list.slice().sort((a, b) =>
+    b.date.localeCompare(a.date) || (b.time || '').localeCompare(a.time || '') || (b.ts || 0) - (a.ts || 0));
+}
+
+function filtersHTML() {
+  const opt = (v, l, sel) => '<option value="' + esc(v) + '"' + (sel === v ? ' selected' : '') + '>' + esc(l) + '</option>';
+  return '<div class="filters">' +
+    '<input type="search" id="fq" class="fq" autocomplete="off" placeholder="' + esc(t('search')) + '" value="' + esc(flt.q) + '" aria-label="' + esc(t('search')) + '">' +
+    '<div class="frow">' +
+      '<select id="fAcc" aria-label="' + esc(t('account')) + '">' + opt('', t('fAcc'), flt.acc) +
+        state.accounts.map((a) => opt(a.id, accName(a), flt.acc)).join('') + '</select>' +
+      '<select id="fCat" aria-label="' + esc(t('category')) + '">' + opt('', t('fCat'), flt.cat) +
+        state.categories.map((c) => opt(c.id, catName(c), flt.cat)).join('') + '</select>' +
+      '<select id="fType" aria-label="' + esc(t('type')) + '">' + opt('', t('fType'), flt.type) +
+        opt('out', t('tOut'), flt.type) + opt('in', t('tIn'), flt.type) + opt('tr', t('tTr'), flt.type) + '</select>' +
+    '</div>' +
+    '<div class="fopts"><label class="chk"><input type="checkbox" id="fAll"' + (flt.all ? ' checked' : '') + '> ' + esc(t('allPeriods')) + '</label>' +
+    '<button type="button" class="link" id="fClear"' + (filterActive() ? '' : ' hidden') + '>' + esc(t('clearFilters')) + '</button></div></div>';
+}
+
+function renderOps() {
+  const body = $('#opsBody');
+  if (!body) return;
+  const list = sortedOps(state.tx.filter(matches));
+  const out = sum(list.filter((x) => x.type === 'out'));
+  const inc = sum(list.filter((x) => x.type === 'in'));
+  const active = filterActive();
+  const head = active
+    ? '<p class="res">' + list.length + ' ' + esc(t('resCount')) + (out ? ' · ' + esc(t('expenses')) + ' ' + money(out) : '') +
+      (inc ? ' · ' + esc(t('income')) + ' ' + money(inc) : '') + '</p>'
+    : '';
+  body.innerHTML = head + (list.length
+    ? list.map((x) => opHTML(x, flt.all)).join('')
+    : '<p class="empty">' + esc(t(active ? 'noMatch' : 'noOps')) + '</p>');
+  const clr = $('#fClear');
+  if (clr) clr.hidden = !active;
+}
+
+/* ---------- Budgets et comparaison ---------- */
+
+function spentByCat(list) {
+  const m = {};
+  list.filter((x) => x.type === 'out').forEach((x) => { m[x.category] = (m[x.category] || 0) + x.amount; });
+  return m;
+}
+function numFmt(v) {
+  return new Intl.NumberFormat(locale(), { maximumFractionDigits: 0 }).format(Math.round(v));
+}
+function monthShift(m, d) {
+  const p = m.split('-').map(Number);
+  const dt = new Date(p[0], p[1] - 1 + d, 1);
+  return dt.getFullYear() + '-' + pad(dt.getMonth() + 1);
+}
+function monthShort(m) {
+  const p = m.split('-').map(Number);
+  return new Intl.DateTimeFormat(locale(), { month: 'short' }).format(new Date(p[0], p[1] - 1, 1));
+}
+
+function budgetsHTML(ops) {
+  const sp = spentByCat(ops);
+  const rows = state.categories.filter((c) => c.budget > 0).map((c) => {
+    const s = sp[c.id] || 0;
+    const p = s / c.budget * 100;
+    const cls = p >= 100 ? 'over' : p >= 80 ? 'warn' : 'ok';
+    return '<div class="bud"><div class="bud-h"><span>' + esc(catName(c)) + '</span><b>' + money(s) + ' / ' + money(c.budget) + '</b></div>' +
+      '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.min(100, Math.round(p)) + '" aria-label="' + esc(catName(c)) + '">' +
+      '<i class="' + cls + '" style="width:' + Math.min(100, p).toFixed(1) + '%"></i></div>' +
+      '<small class="t-' + cls + '">' + Math.round(p) + '%' + (p >= 100 ? ' · ' + esc(t('overBy')) + ' ' + money(s - c.budget) : '') + '</small></div>';
+  });
+  if (!rows.length) return '';
+  return '<section class="card"><h2>' + t('budgets') + '</h2>' + rows.join('') + '</section>';
+}
+
+function deltaHTML(a, b) {
+  if (!a && !b) return '<b class="delta">—</b>';
+  if (!a) return '<b class="delta neg">' + esc(t('newItem')) + '</b>';
+  const p = Math.round((b - a) / a * 100);
+  return '<b class="delta ' + (p > 0 ? 'neg' : p < 0 ? 'pos' : '') + '">' + (p > 0 ? '+' : '') + p + '%</b>';
+}
+
+function compareHTML() {
+  const prevKey = monthShift(month, -1);
+  const cur = spentByCat(state.tx.filter((x) => x.date.startsWith(month)));
+  const prev = spentByCat(state.tx.filter((x) => x.date.startsWith(prevKey)));
+  const ids = Array.from(new Set(Object.keys(cur).concat(Object.keys(prev))));
+  const rows = ids.map((id) => {
+    const c = catById(id);
+    return { name: c ? catName(c) : t('others'), a: prev[id] || 0, b: cur[id] || 0 };
+  }).sort((x, y) => y.b - x.b || y.a - x.a);
+  const totA = rows.reduce((s, r) => s + r.a, 0);
+  const totB = rows.reduce((s, r) => s + r.b, 0);
+
+  let html = '<section class="card"><h2>' + t('compare') + '<small>' + esc(monthLabel(prevKey)) + ' ' + arrow() + ' ' + esc(monthLabel(month)) + '</small></h2>';
+  if (!rows.length) {
+    html += '<p class="empty">' + t('noChart') + '</p>';
+  } else {
+    html += rows.map((r) =>
+      '<div class="cmp"><span>' + esc(r.name) + '</span><span class="cmp-v">' + numFmt(r.a) + ' ' + arrow() + ' ' + numFmt(r.b) + '</span>' + deltaHTML(r.a, r.b) + '</div>').join('');
+    html += '<div class="cmp tot"><span>' + t('totalRow') + '</span><span class="cmp-v">' + numFmt(totA) + ' ' + arrow() + ' ' + numFmt(totB) + '</span>' + deltaHTML(totA, totB) + '</div>';
+  }
+
+  const months = [5, 4, 3, 2, 1, 0].map((i) => monthShift(month, -i));
+  const vals = months.map((m) => sum(state.tx.filter((x) => x.type === 'out' && x.date.startsWith(m))));
+  const mx = Math.max.apply(null, vals.concat([1]));
+  html += '<h2 class="h6">' + t('last6') + '</h2><div class="b6wrap" role="img" aria-label="' + esc(t('last6')) + '">' +
+    months.map((m, i) =>
+      '<div class="b6"><div class="b6plot"><div class="b6bar' + (i === 5 ? ' cur' : '') + '" style="height:' +
+      (vals[i] ? Math.max(3, vals[i] / mx * 100).toFixed(1) : 0) + '%"></div></div>' +
+      '<span class="b6v">' + (vals[i] ? numFmt(vals[i]) : '') + '</span><span class="b6l">' + esc(monthShort(m)) + '</span></div>').join('') +
+    '</div></section>';
+  return html;
 }
 
 function renderAll() {
   $('#appTitle').textContent = t('app');
   $('#monthLabel').textContent = monthLabel(month);
 
-  const ops = state.tx
-    .filter((x) => x.date.startsWith(month))
-    .sort((a, b) => b.date.localeCompare(a.date) || (b.time || '').localeCompare(a.time || '') || (b.ts || 0) - (a.ts || 0));
+  const ops = state.tx.filter((x) => x.date.startsWith(month));
   const out = sum(ops.filter((x) => x.type === 'out'));
   const inc = sum(ops.filter((x) => x.type === 'in'));
   const net = inc - out;
@@ -431,9 +610,11 @@ function renderAll() {
       '<div class="card stat wide"><span>' + t('net') + '</span><b class="' + (net < 0 ? 'neg' : 'pos') + '">' + money(net) + '</b></div>' +
     '</section>' +
     '<section class="card"><h2>' + t('accounts') + '<small>' + t('total') + ' ' + money(totalBal) + '</small></h2>' + accRows + '</section>' +
+    budgetsHTML(ops) +
     '<section class="card"><h2>' + t('byCategory') + (chart.total ? '<small>' + t('total') + ' ' + money(chart.total) + '</small>' : '') + '</h2>' + chart.html + '</section>' +
-    '<section class="card ops"><h2 style="padding-top:10px">' + t('operations') + '</h2>' +
-      (ops.length ? ops.map(opHTML).join('') : '<p class="empty">' + t('noOps') + '</p>') + '</section>';
+    compareHTML() +
+    '<section class="card ops"><h2 style="padding-top:10px">' + t('operations') + '</h2>' + filtersHTML() + '<div id="opsBody"></div></section>';
+  renderOps();
 }
 
 function applyLang() {
@@ -445,6 +626,7 @@ function applyLang() {
   $('#prevM').setAttribute('aria-label', t('prev'));
   $('#nextM').setAttribute('aria-label', t('next'));
   $('#fab').setAttribute('aria-label', t('add'));
+  renderFoot();
 }
 
 let toastTimer;
@@ -702,16 +884,14 @@ function openTx(id) {
     save();
     dlg.close();
     renderAll();
+    budgetAlert(rec);
   });
 
   const del = $('#btnDel');
   if (del) del.onclick = async () => {
     if (!confirm(t('confirmDel'))) return;
-    if (editing.att) { try { await DB.del(editing.att.id); } catch (e) { /* ignoré */ } }
-    state.tx = state.tx.filter((x) => x !== editing);
-    save();
     dlg.close();
-    renderAll();
+    await deleteTx(editing);
   };
 
   dlg.showModal();
@@ -751,6 +931,7 @@ function renderSettings() {
   const catRows = state.categories.map((c) =>
     '<div class="catblock"><div class="row"><b class="nm">' + esc(catName(c)) + '</b>' +
     '<button type="button" class="icon" data-act="del-cat" data-id="' + esc(c.id) + '" aria-label="' + t('delete') + '">✕</button></div>' +
+    '<label class="budrow"><span>' + t('budgetOf') + '</span><input data-budget="' + esc(c.id) + '" inputmode="decimal" placeholder="0" value="' + esc(c.budget || '') + '"></label>' +
     '<div class="chips">' + (c.subs || []).map((s) =>
       '<span class="chip">' + esc(s.name) + '<button type="button" data-act="del-sub" data-cat="' + esc(c.id) + '" data-id="' + esc(s.id) +
       '" aria-label="' + esc(t('delete')) + '">✕</button></span>').join('') + '</div>' +
@@ -781,6 +962,10 @@ function renderSettings() {
       '<div class="list">' + catRows + '</div>' +
       '<form class="add" data-form="cat"><input name="name" autocomplete="off" placeholder="' + esc(t('newCat')) + '">' +
         '<button class="btn">' + t('addBtn') + '</button></form>' +
+      '<h3>' + t('reset') + '</h3><p class="hint">' + t('resetHint') + '</p>' +
+      '<label class="chk"><input type="checkbox" id="resetBal"> ' + t('resetBal') + '</label>' +
+      '<button type="button" class="danger" data-act="reset-month">' + t('resetMonth') + ' (' + esc(monthLabel(month)) + ')</button>' +
+      '<button type="button" class="danger" data-act="reset-all">' + t('resetAll') + '</button>' +
     '</div>';
 }
 
@@ -796,6 +981,7 @@ function bindSettings() {
     if (act === 'export-json') exportData();
     else if (act === 'export-xlsx') exportXlsx();
     else if (act === 'import') $('#importFile').click();
+    else if (act === 'reset-month' || act === 'reset-all') resetOps(act === 'reset-month' ? 'month' : 'all', $('#resetBal').checked);
     else if (act === 'del-acc') {
       const id = b.dataset.id;
       if (state.accounts.length <= 1) return toast(t('lastOne'));
@@ -825,6 +1011,13 @@ function bindSettings() {
     } else if (el.dataset.init) {
       const a = state.accounts.find((a) => a.id === el.dataset.init);
       if (a) { a.initial = parseAmount(el.value); save(); renderAll(); }
+    } else if (el.dataset.budget) {
+      const c = catById(el.dataset.budget);
+      if (c) {
+        const v = parseAmount(el.value);
+        if (v > 0) c.budget = v; else delete c.budget;
+        save(); renderAll();
+      }
     }
   });
 
@@ -867,7 +1060,8 @@ async function exportData() {
     }
     download(new Blob([JSON.stringify(out)], { type: 'application/json' }), 'depenses-sauvegarde-' + todayStr() + '.json');
     toast(t('exported'));
-  } catch (e) { toast(t('fileErr')); }
+    return true;
+  } catch (e) { toast(t('fileErr')); return false; }
 }
 
 /* Excel : fichier .xlsx écrit à la main (une seule feuille), compressé avec JSZip */
@@ -1018,6 +1212,133 @@ async function importData(file) {
   } catch (e) { toast(t('importBad')); }
 }
 
+/* ---------- Consulter, supprimer, remise à zéro, alertes, pied de page ---------- */
+
+async function deleteTx(x) {
+  if (x.att) { try { await DB.del(x.att.id); } catch (e) { /* ignoré */ } }
+  state.tx = state.tx.filter((q) => q !== x);
+  save();
+  renderAll();
+  toast(t('deleted'));
+}
+
+async function openView(id) {
+  const x = state.tx.find((q) => q.id === id);
+  if (!x) return;
+  const o = opInfo(x);
+  const c = catById(x.category);
+  const typeLabel = { out: t('tOut'), in: t('tIn'), tr: t('tTr') }[x.type] || '';
+  const row = (k, v) => v ? '<div class="drow"><span>' + esc(k) + '</span><b>' + v + '</b></div>' : '';
+
+  let rows = row(t('type'), esc(typeLabel)) +
+    row(t('date'), esc(dayLabel(x.date, true) + (x.time ? ' ' + x.time : '')));
+  if (x.type === 'tr') {
+    rows += row(t('from'), esc(accName(accById(x.account)))) + row(t('to'), esc(accName(accById(x.to))));
+  } else {
+    rows += row(t('account'), esc(accName(accById(x.account))));
+  }
+  if (x.type === 'out') {
+    rows += row(t('category'), esc(c ? catName(c) : t('others')));
+    if (c && x.sub) rows += row(t('subcat'), esc(subName(c, x.sub)));
+  }
+  rows += row(t('note'), esc(x.note));
+
+  let items = '';
+  if (x.items && x.items.length) {
+    items = '<div class="ditems"><span class="dh">' + esc(t('articles')) + '</span>' +
+      x.items.map((i) => '<div class="drow"><span class="dn">' + esc(i.n) + '</span><b>' + (i.a ? money(i.a) : '') + '</b></div>').join('') + '</div>';
+  }
+
+  let att = '';
+  if (x.att) {
+    att = '<div class="datt"><span class="dh">' + esc(t('attachment')) + '</span>' +
+      '<div class="att"><span>📎 ' + esc(x.att.name) + '</span><button type="button" class="btn sm" id="dAttView">' + esc(t('openAtt')) + '</button></div>' +
+      '<img id="dThumb" class="thumb" alt="" hidden></div>';
+  } else {
+    att = row(t('attachment'), esc(t('noAtt')));
+  }
+
+  const dlg = $('#dlgDetail');
+  dlg.innerHTML =
+    '<div class="sheet">' +
+      '<div class="sheet-h"><h2>' + esc(t('detail')) + '</h2>' +
+        '<button type="button" class="icon" data-close aria-label="' + esc(t('close')) + '">✕</button></div>' +
+      '<p class="d-title">' + esc(o.title) + '</p>' +
+      '<p class="d-amt ' + o.cls + '">' + o.sign + money(x.amount) + '</p>' +
+      '<div class="drows">' + rows + '</div>' + items + att +
+      '<div class="actions"><button type="button" class="danger" id="dDel">' + esc(t('delOp')) + '</button>' +
+        '<button type="button" class="primary" id="dEdit">' + esc(t('editOp')) + '</button></div>' +
+    '</div>';
+
+  $('#dEdit').onclick = () => { dlg.close(); openTx(id); };
+  $('#dDel').onclick = async () => {
+    if (!confirm(t('confirmDel'))) return;
+    dlg.close();
+    await deleteTx(x);
+  };
+  const vb = $('#dAttView');
+  if (vb) vb.onclick = () => viewAtt(x.att);
+  dlg.showModal();
+
+  if (x.att && (x.att.type || '').startsWith('image/')) {
+    try {
+      const rec = await DB.get(x.att.id);
+      const img = $('#dThumb');
+      if (rec && img) {
+        const url = URL.createObjectURL(rec.blob);
+        img.src = url;
+        img.hidden = false;
+        img.onclick = () => viewAtt(x.att);
+        dlg.addEventListener('close', () => URL.revokeObjectURL(url), { once: true });
+      }
+    } catch (e) { /* l'aperçu est facultatif */ }
+  }
+}
+
+async function resetOps(scope, zeroBal) {
+  const list = scope === 'month' ? state.tx.filter((x) => x.date.startsWith(month)) : state.tx.slice();
+  const hasBal = zeroBal && state.accounts.some((a) => Number(a.initial));
+  if (!list.length && !hasBal) return toast(t('nothingToReset'));
+
+  const label = scope === 'month' ? monthLabel(month) : t('allOps');
+  const msg = t('resetConfirm').replace('{n}', list.length).replace('{label}', label) + '\n' +
+    t('attDeleted') + (zeroBal ? '\n' + t('balZero') : '') + '\n' + t('backupNote');
+  if (!confirm(msg)) return;
+  if (!confirm(t('resetConfirm2'))) return;
+
+  const saved = await exportData();
+  if (!saved) return toast(t('backupFail'));
+
+  for (const x of list) {
+    if (x.att) { try { await DB.del(x.att.id); } catch (e) { /* ignoré */ } }
+  }
+  state.tx = state.tx.filter((x) => list.indexOf(x) === -1);
+  if (zeroBal) state.accounts.forEach((a) => { a.initial = 0; });
+  save();
+  renderAll();
+  if ($('#dlgSet').open) renderSettings();
+  toast(t('resetDone'));
+}
+
+function budgetAlert(rec) {
+  if (rec.type !== 'out') return;
+  const c = catById(rec.category);
+  if (!c || !(c.budget > 0)) return;
+  const m = rec.date.slice(0, 7);
+  const spent = sum(state.tx.filter((x) => x.type === 'out' && x.category === c.id && x.date.startsWith(m)));
+  const p = spent / c.budget * 100;
+  if (p >= 100) toast(t('budgetOver').replace('{c}', catName(c)));
+  else if (p >= 80) toast(t('budgetNear').replace('{c}', catName(c)).replace('{p}', Math.round(p)));
+}
+
+function renderFoot() {
+  const f = $('#foot');
+  if (!f) return;
+  const mail = ['Anasso-2006', 'hotmail.com'].join('@');
+  f.innerHTML = '© ' + new Date().getFullYear() + ' Anasso · ' + esc(t('rights')) +
+    ' · <a href="mailto:' + mail + '">' + mail + '</a>';
+}
+
 /* ---------- Démarrage ---------- */
 
 async function init() {
@@ -1032,8 +1353,33 @@ async function init() {
   $('#fab').onclick = () => openTx();
   $('#btnSettings').onclick = openSettings;
   $('#main').addEventListener('click', (e) => {
-    const b = e.target.closest('.op');
-    if (b) openTx(b.dataset.id);
+    if (e.target.closest('#fClear')) {
+      flt = { q: '', acc: '', cat: '', type: '', all: false };
+      renderAll();
+      return;
+    }
+    const a = e.target.closest('[data-act]');
+    const op = e.target.closest('.op');
+    if (!a || !op) return;
+    const id = op.dataset.id;
+    if (a.dataset.act === 'view') openView(id);
+    else if (a.dataset.act === 'edit') openTx(id);
+    else if (a.dataset.act === 'del') {
+      const x = state.tx.find((q) => q.id === id);
+      if (x && confirm(t('confirmDel'))) deleteTx(x);
+    }
+  });
+  $('#main').addEventListener('input', (e) => {
+    if (e.target.id === 'fq') { flt.q = e.target.value; renderOps(); }
+  });
+  $('#main').addEventListener('change', (e) => {
+    const id = e.target.id;
+    if (id === 'fAcc') flt.acc = e.target.value;
+    else if (id === 'fCat') flt.cat = e.target.value;
+    else if (id === 'fType') flt.type = e.target.value;
+    else if (id === 'fAll') flt.all = e.target.checked;
+    else return;
+    renderOps();
   });
 
   document.querySelectorAll('dialog').forEach((d) => {
