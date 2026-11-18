@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.anasso06.twa",
+        "sha256_cert_fingerprints": ["41:FE:E2:EC:B4:E8:89:E9:2D:85:20:66:61:DB:DA:64:92:B5:99:54:F5:F0:41:E6:B8:90:95:B1:67:94:52:7F"]
+      }
+    }]
